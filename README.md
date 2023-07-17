@@ -1,5 +1,5 @@
-# STM32F103-CMSIS-USART
-USART library to provide serial IO functionality via a serial terminal.
+# STM32F103-CMSIS-USART-lib
+USART library to provide serial IO functionality via a serial terminal and sample program to show off the functionality of the library.
 <br>
 ### Hardware Setup:
 + Use a USB serial dongle. Connect the dongle's ground pin to the STM32 (Blue Pill) ground, and connect the dongle's Tx and Rx wires as follows:
