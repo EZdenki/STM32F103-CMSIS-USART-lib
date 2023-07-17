@@ -2,12 +2,19 @@
 USART library to provide serial IO functionality via a serial terminal.
 <br>
 ### Hardware Setup:
-+ Use a USB serial dongle. Connect the dongle's Rx wire to pin PA9 (Tx) on the STM32 / Blue Pill, and the dongle's Tx pin to pin PA10 (Rx). Connect the ground pin on the dongle to the ground pin on the STM32 /Blue Pill.
-+ Find the COM port that the dongle is connected to, and open a serial terminal (such as PuTTY) to that COM port with a baud rate of 115,200.
++ Use a USB serial dongle. Connect the dongle's ground pin to the STM32 (Blue Pill) ground, and connect the dongle's Tx and Rx wires as follows:
+
+| USART  |  Tx  |  Rx  |
+| :---:    | :---: | :---:  |
+| USART1 | PA9  | PA10 |
+| USART2 | PA2  | PA3  |
+| USART3 | PB10 | PB11 |
++ Find the COM port on the PC that the dongle is connected to by using Device Manager under Winodws, or ```dir /dev``` under Linux.
+  Open a serial terminal (such as PuTTY under Windows or minCom under Linux) and point the terminal program to the relevant COM port.
+  The COM port baud rate is 115,200.
 ### Install Library and Sample Program:
 + To download, type ```git clone https://github.com/sandynomike/STM32F103-CMSIS-USART.git```, then move to the newly created directory.
-+ To upload and run program on Windows, type ```make clean && make```.
-+ To run under non-Windows machines, makefile and the upload utilities must be modified accordingly.
++ Type ```make clean && make``` to build and upload the program to the Blue Pill.
 ### The following functionality implemented on the STM32F103 (Bluepill):
 + USART_init: Initialize USART1, USART2, or USART3 at 115,200 baud.
 + USART_putc: Output single character to serial port
