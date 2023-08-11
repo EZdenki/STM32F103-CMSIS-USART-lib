@@ -1,9 +1,12 @@
 //  main.c
 //  Sample Program to show the functionality of the STM32F103-CMSIS-USART library
-//      Version 1.0   07/17/2023    Updated Comments and Core Files
+//    Mike Shegedin (EZdenki.com)
+//
+//      Version 1.1   12 Aug 2023   Added baud rate setting to USART_init, changed pause-lib
+//                                  to Delay-lib
+//      Version 1.0   17 Jul 2023   Updated Comments and Core Files
 //
 //  Target Microcontroller: STM32F103 (Blue Pill)
-//  Mike Shegedin, 07/2023  Started
 //
 //  Goals:  Implement routines to read and write from USART serial port.
 //
@@ -28,8 +31,10 @@ main()
 {
   char myInput;
   uint32_t myInputLen;
+  #define USART_SPEED 115200
+  
 
-  USART_init( USART1 );   // Init USART1 and associate with USART routines
+  USART_init( USART2, USART_SPEED );   // Init USART1 and associate with USART routines
 
   //  Identify Currently Used USART
   USART_puts("\n\n\n\n*** USART Serial Port Test Program ***\n\nConnected to USART");
@@ -41,16 +46,17 @@ main()
     USART_putc( '3' );
   else
     USART_putc( '?' );
-  USART_putc( '\n' );
-
+  USART_puts( ". The baudrate is " );
+  USART_puti( USART_SPEED, 10 );
+  USART_puts( ".\n\n" );
 
   //  Single Character Input Menu
-  USART_puts("\n    Menu\n");
-  USART_puts(  "============\n");
-  USART_puts(  "  1: Happy\n");
-  USART_puts(  "  2: Sad\n");
-  USART_puts(  "------------\n");
-  USART_puts(  "Enter choice:");
+  USART_puts( "    Menu\n");
+  USART_puts( "============\n");
+  USART_puts( "  1: Happy\n");
+  USART_puts( "  2: Sad\n");
+  USART_puts( "------------\n");
+  USART_puts( "Enter choice:");
   do
   {
     myInput = USART_getc();
